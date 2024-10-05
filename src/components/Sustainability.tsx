@@ -1,8 +1,20 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+import useOnScreen from "../app/hooks/useOnScreen";
 
 const SustainabilitySection = () => {
+  const ref = useRef<HTMLDivElement>(null); // Reference to the section
+  const isVisible = useOnScreen(ref, "-200px"); // Pass the ref to the useOnScreen hook
+
   return (
-    <section className="bg-green-50 py-12">
+    <section
+      ref={ref}
+      className={`bg-green-50 py-12 transition-opacity duration-1000 ease-in-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <div className="container mx-auto px-4">
         {/* Headline */}
         <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-8">
@@ -15,10 +27,10 @@ const SustainabilitySection = () => {
             <Image
               src="/eco-friendly-polymer.avif"
               alt="Eco-friendly Polymers"
-              width={400} // Reduce the width
-              height={150} // Reduce the height
+              width={300}
+              height={100}
               className="rounded-lg shadow-lg"
-              style={{ width: "100%", height: "auto" }} // Keeps it responsive
+              style={{ width: "100%", height: "auto" }}
             />
           </div>
           <div className="w-full lg:w-1/2 lg:pl-12">

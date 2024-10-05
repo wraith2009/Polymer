@@ -1,6 +1,7 @@
-// pages/industries.tsx
+"use client";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useRef } from "react";
+import useOnScreen from "../app/hooks/useOnScreen";
 
 interface Industry {
   name: string;
@@ -30,8 +31,16 @@ const industries: Industry[] = [
 ];
 
 const IndustriesServed: FC = () => {
+  const ref = useRef<HTMLDivElement>(null); // Reference to the section
+  const isVisible = useOnScreen(ref, "-200px"); // Pass the ref to the useOnScreen hook
+
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div
+      ref={ref}
+      className={`container mx-auto py-12 px-4 transition-opacity duration-1000 ease-in-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <h1 className="text-4xl font-bold text-center mb-12 text-gray-800">
         Industries We Serve
       </h1>
