@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import IndustriesServed from "../components/Industry";
 import Product from "../components/Product";
 import SustainabilitySection from "../components/Sustainability";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <SustainabilitySection />
       <IndustriesServed />
       <ContactUs />
+      <Footer />
     </div>
   );
 }
